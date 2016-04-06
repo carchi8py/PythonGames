@@ -15,6 +15,8 @@ clr2 = (255, 44, 166)
 clr3 = (34, 55, 245)
 
 i = 0
+
+img_bug = pygame.image.load("bug.png")
 while True:
     #Processes
     for event in pygame.event.get():
@@ -33,6 +35,8 @@ while True:
     pygame.draw.line(screen, clr1, (0, 0), (maxX, maxY), 5)
     pygame.draw.rect(screen, clr2, (40,40,400,200))
     pygame.draw.circle(screen, clr3, (1500, 700), 100, 5)
+
+    screen.blit(img_bug, (500, 500))
 
     pygame.display.flip()
 
