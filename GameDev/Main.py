@@ -17,7 +17,7 @@ bug = Bug(0, maxY - 40, 40, 40, "images/bug.png")
 while True:
     process(bug)
     #Logic
-    bug.motion()
+    bug.motion(maxX)
 
     #Draw
     screen.fill((0,0,0))

@@ -27,5 +27,11 @@ class Bug(BaseClass):
 
         self.velx = 3
 
-    def motion(self):
+    def motion(self, screenwidth):
+        #if the next frame is going to be over the image screen stop it.
+        predicted_location = self.rect.x + self.velx
+        if predicted_location < 0:
+            self.velx = 0
+        elif predicted_location + self.width > screenwidth:
+            self.velx = 0
         self.rect.x += self.velx
