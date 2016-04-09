@@ -1,6 +1,8 @@
 import pygame
 import sys
 
+from classes import *
+
 pygame.init()
 maxX = 1920
 maxY = 1080
@@ -8,15 +10,11 @@ screen = pygame.display.set_mode((maxX, maxY), 0, 32)
 
 clock = pygame.time.Clock()
 FPS = 60
-totalFrames = 0
 
-clr1 = (22, 122, 211)
-clr2 = (255, 44, 166)
-clr3 = (34, 55, 245)
+bug = Bug(0, 100, 40, 40, "images/bug.png")
+bug2 = Bug(0, 300, 40, 40, "images/bug.png")
+bug3 = Bug(0, 500, 40, 40, "images/bug.png")
 
-i = 0
-
-img_bug = pygame.image.load("bug.png")
 while True:
     #Processes
     for event in pygame.event.get():
@@ -25,19 +23,11 @@ while True:
             pygame.quit()
             sys.exit()
     #Logic
-    totalFrames += 1
-    i += 1
-    if i > 255:
-        i %= 255
+    bug.motion()
 
     #Draw
-    screen.fill((90,i,180))
-    pygame.draw.line(screen, clr1, (0, 0), (maxX, maxY), 5)
-    pygame.draw.rect(screen, clr2, (40,40,400,200))
-    pygame.draw.circle(screen, clr3, (1500, 700), 100, 5)
-
-    screen.blit(img_bug, (500, 500))
-
+    screen.fill((0,0,0))
+    BaseClass.allsprites.draw(screen)
     pygame.display.flip()
 
     #Other
