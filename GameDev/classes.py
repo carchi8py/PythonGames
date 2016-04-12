@@ -58,3 +58,9 @@ class Bug(BaseClass):
             else:
                 self.rect.y -= self.vely
 
+class Fly(BaseClass):
+    List = pygame.sprite.Group()
+    def __init__(self, x, y, width, height, image_string):
+        BaseClass.__init__(self, x, y, width, height, image_string)
+        Fly.List.add(self)
+
