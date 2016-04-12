@@ -26,8 +26,12 @@ class Bug(BaseClass):
         Bug.List.add(self)
 
         self.velx = 3
+        self.vely = 5
 
-    def motion(self, screenwidth):
+        self.jumping = False
+        self.go_down = False
+
+    def motion(self, screenwidth, screenheight):
         #if the next frame is going to be over the image screen stop it.
         predicted_location = self.rect.x + self.velx
         if predicted_location < 0:
@@ -35,3 +39,22 @@ class Bug(BaseClass):
         elif predicted_location + self.width > screenwidth:
             self.velx = 0
         self.rect.x += self.velx
+
+        self.__jump(screenheight)
+
+    def __jump(self, screenheight):
+
+        max_jump = 200
+
+        if self.jumping:
+            if self.rect.y < max_jump:
+                self.go_down = True
+            if  self.go_down:
+                self.rect.y += self.vely
+                predicted_location = self.rect.y + self.vely
+                if predicted_location + self.height > screenheight:
+                    self.jumping = False
+                    self.go_down = False
+            else:
+                self.rect.y -= self.vely
+

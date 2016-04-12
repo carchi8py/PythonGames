@@ -10,11 +10,16 @@ def process(bug):
             sys.exit()
     keys = pygame.key.get_pressed()
 
+    #Horizontal movement
     if keys[pygame.K_d]:
         bug.image = pygame.image.load("images/bug.png")
-        bug.velx = 20
+        bug.velx = 5
     elif keys[pygame.K_a]:
         bug.image = pygame.image.load("images/bugflipped.png")
-        bug.velx = -20
+        bug.velx = -5
     else:
         bug.velx = 0
+
+    #Vertical Movement
+    if keys[pygame.K_w]:
+        bug.jumping = True
