@@ -20,7 +20,7 @@ while True:
     process(bug)
     #Logic
     bug.motion(maxX, maxY)
-
+    fly.fly(maxX)
     #Draw
     screen.blit(background, (0,0))
     BaseClass.allsprites.draw(screen)

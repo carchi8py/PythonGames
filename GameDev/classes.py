@@ -1,4 +1,6 @@
 import pygame
+import math
+from random import randint
 
 class BaseClass(pygame.sprite.Sprite):
     #List of all Sprites in the game
@@ -63,4 +65,15 @@ class Fly(BaseClass):
     def __init__(self, x, y, width, height, image_string):
         BaseClass.__init__(self, x, y, width, height, image_string)
         Fly.List.add(self)
+        self.velx = randint(1, 4)
+        self.amplitude = randint(20, 140)
+        self.period = randint(4, 5) / 100.0
+
+    def fly(self, screenwidth):
+        if self.rect.x + self.width > screenwidth or self.rect.x < 0:
+            self.image = pygame.transform.flip(self.image, True, False)
+            self.velx = -self.velx
+        self.rect.x += self.velx
+
+        self.rect.y = self.amplitude * math.sin(self.period * self.rect.x) + 140
 
